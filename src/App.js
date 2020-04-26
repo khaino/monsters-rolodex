@@ -14,6 +14,9 @@ class App extends Component {
     }
   }
 
+  onSearchChange = (e) => {
+    this.setState({ searchField: e.target.value })
+  }
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
@@ -28,10 +31,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <SearchBox
-          placeholder="Search monster"
-          handleChange={e => this.setState({ searchField: e.target.value })}
-        />
+        <h1>Monsters Rolodex</h1>
+        <SearchBox placeholder="Search monster" handleChange={this.onSearchChange} />
         <CardList monsters={filterMonsters} />
       </div>
     );
